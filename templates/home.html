@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Medscare</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='home_style.css') }}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Medscare</h2>
+                <p>Out Patient ticket Generation</p>
+                <form id="msform" method="post" action="{{url_for('process')}}">
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li class="active" id="personal"><strong>personal</strong></li>
+                        <li id="account"><strong>Department</strong></li>
+                        <li id="payment"><strong>Symptoms</strong></li>
+                        <li id="confirm"><strong>Finish</strong></li>
+                    </ul>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> <br> <!-- fieldsets -->
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Personal Information:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 1 - 4</h2>
+                                </div>
+                            </div> <label class="fieldlabels">Full name: *</label> 
+                            <input type="text" name="name" placeholder="Full name" required/>
+
+                             <label class="fieldlabels">Age: *</label> 
+                             <input type="number" name="age" placeholder="Age" required/> 
+
+                             <label for="fieldlabels">Gender</label>
+                             <select class="form-control form-control-lg" id="exampleForedmControlSelect1" name="gender" required>
+                               <option value="">Select Gender</option>
+                               <option value="Male">Male</option>
+                               <option value="Female">Female</option>
+                               <option value="Transgender">Transgender</option>
+                             </select>
+
+                             <label class="fieldlabels">Permanent address:</label> 
+                             <input type="text" name="address" placeholder="Address" required/>
+
+                              <label class="fieldlabels">Phone number</label> 
+                              <input type="number" name="number" placeholder="Phone number" required/>
+                        </div> 
+                        <input type="button" name="next" class="next action-button" value="Next" required/>
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title"> Hospital Department:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 2 - 4</h2>
+                                </div>
+                            </div>
+                            <label for="fieldlabels">Department</label>
+                            <select class="form-control form-control-lg" id="fieldlabels" name="dept" required>
+                              <option value="">Select Department</option>
+                              <option value="General">General</option>
+                              <option value="Orthopediac">Orthopediac</option>
+                              <option value="Pediatric">Pediatric</option>
+                              <option value="Ophthalmologist">Ophthalmologist</option>
+                              <option value="Gynocologist">Gynocologist</option>
+                              <option value="Oncologist">Oncologist</option>
+                              <option value="Radiologist">Radiologist</option>
+                              <option value="ENT">ENT Specialist</option>
+                            </select>
+                            <label for="fieldlabels">Any Medical Insurance</label>
+                            <select class="form-control form-control-lg" id="exampwdqleFormControlSelect1" name="Insurance" required>
+                              <option value="">Choose One</option>
+                              <option value="yes">Yes</option>
+                              <option value="No">No</option>
+                            </select>
+
+                        </div>
+                         <input type="button" name="next" class="next action-button" value="Next" /> 
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Symptoms & Issues:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 3 - 4</h2>
+                                </div>
+                            </div> <label class="fieldlabels">Add your Symptoms:</label> 
+                            <textarea id="w3review" name="symptoms" rows="4" cols="50" placeholder="Enter your symptoms by seperating Comma's" required></textarea>
+                            <!-- <input type="text" name="Symptoms" >  -->
+
+                        </div>
+                        
+                         <input  name="next" type="submit" class="next action-button" value="Submit" /> 
+                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Finish:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 4 - 4</h2>
+                                </div>
+                            </div> <br><br>
+                            <h2 class="purple-text text-center"><strong>Generating OP ticket</strong></h2> <br>
+                            <div class="row justify-content-center">
+                                <div class="col-3"> <img src="{{ url_for('static', filename='logo.png') }}" class="fit-image"> </div>
+                            </div> <br><br>
+                            <div class="row justify-content-center">
+                                <div class="col-7 text-center">
+                                    <h5 class="purple-text text-center">You Have Successfully Generated OP ticket</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('homes') }}" class="next">
+                            <input type="button" value="New OP ticket" />
+                        </a>
+                        
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script  src="{{ url_for('static', filename='home_script.js') }}"></script>
+
+</body>
+</html>
